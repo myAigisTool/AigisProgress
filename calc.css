@@ -1,0 +1,209 @@
+body
+{
+	padding-left:10px;
+}
+form
+{
+	width:1050px;
+}
+#progerssArea
+{
+	/*border:1px solid gray;*/
+	width:1000px;
+}
+#progressMax
+{
+	width:0;
+	height:30px;
+	background-color:#ff8080;
+}
+#progressMax span
+{
+	display:block;
+	position:absolute;
+}
+#progressNow
+{
+	width:0;
+	height:30px;
+	background-color:#80ffee;
+}
+#progressNow span
+{
+	display:block;
+	position:absolute;
+	
+}
+#progressBG
+{
+	background-color:#eeffee;
+}
+#bgArea
+{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index: 5;
+	display:none;
+	background-color:rgba(0,0,0,0.5);
+}
+#importForm
+{
+	position:absolute;
+	margin-left:30%;
+	width:30%;
+	height:300px;
+	z-index: 10;
+	display:none;
+	background-color:white;
+	text-align:center;
+}
+#importForm textarea
+{
+	width:100%;
+	height:250px;
+}
+#targetList
+{
+	display:none;
+	position:absolute;
+	list-style-type:none;
+	border:1px solid gray;
+	background-color:white;
+	padding:0;
+	z-index: 10;
+}
+#targetList li:hover
+{
+	background-color:#80ffff;
+}
+#help
+{
+	position:absolute;
+	top:0;
+	right:0;
+	width:30%;
+	background-color:white;
+    border-left: solid 3px #95ccff;
+    border-bottom: solid 3px #95ccff;
+    border-radius: 8px;
+	display:none;
+}
+.helpBtn
+{
+	position:absolute;
+	top:0;
+	right:0;
+	border:1px solid gray;
+	background-color: #dddddd;
+	z-index:5;
+    border-radius: 8px;
+    padding:0.3em 0.8em;
+}
+#exportArea
+{
+	border:1px solid gray;
+	border-top: 2px solid gray;
+	border-left:2px solid gray;
+	width:100%;
+	height:150px;
+}
+#exportPopup
+{
+	width:60%;
+	margin-left:20%;
+	position:absolute;
+	z-index: 10;
+	display:none;
+	background-color:white;
+	padding:10px;
+}
+#bgArea
+{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index: 5;
+	display:none;
+	background-color:rgba(0,0,0,0.5);
+}
+
+.popbox {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+}
+.popbox .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 19px;
+    font-weight: bold;
+}
+.popbox p {
+	margin:0;
+    padding: 0;
+}
+.popbox dl
+{
+    margin: 0 0 0.5em 0;
+	padding:0;
+}
+.popbox dl dt
+{
+	float:left;
+	margin:0 20px 0 0;
+	padding:0;
+}
+.popbox dl dd
+{
+	margin:0;
+	padding:0;
+}
+.calcGrid td
+{
+	color:red;
+}
+
+.square_btn {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
+}
+
+.contents
+{
+    border-top-style: solid;
+    border-top-width: 4px;
+}
+
+
+.inp {
+    color: #FFA000;
+    background: #fff1da;
+}
+.inp:hover {
+    background: #ffc25c;
+    color: #FFF;
+}
+.calc {
+    color: #00A0FF;
+    background: #daf1ff;
+}
+.calc:hover {
+    background: #5cc2ff;
+    color: #FFF;
+}
+
