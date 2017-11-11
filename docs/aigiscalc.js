@@ -255,6 +255,11 @@ function init()
 	}
 	
 	targetList = storage.getItem('targetList');
+	if(targetList == null)
+	{
+		targetList = storage.getItem('rewardGrid');
+	}
+	targetList = storage.getItem('targetList');
 	if(targetList != null)
 	{
 		targetList = JSON.parse(targetList);

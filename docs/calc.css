@@ -70,10 +70,12 @@ form
 	display:none;
 	position:absolute;
 	list-style-type:none;
-	border:1px solid gray;
+	border:3px solid gray;
 	background-color:white;
 	padding:0;
 	z-index: 10;
+	top:1em;
+	
 }
 #targetList li:hover
 {
