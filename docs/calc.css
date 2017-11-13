@@ -52,6 +52,7 @@ form
 #importForm
 {
 	position:absolute;
+	top:300px;
 	margin-left:30%;
 	width:30%;
 	height:300px;
