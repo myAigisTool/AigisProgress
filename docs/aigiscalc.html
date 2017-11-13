@@ -11,6 +11,17 @@
 <script src="aigiscalc.js"></script>
 <style>
 
+#caclInitArea
+{
+	position:absolute;
+	width:30%;
+	top:300px;
+	z-index:10;
+	margin-left:30%;
+	background-color:white;
+	display:none;
+}
+
 .contents
 {
 	border-color: #95ccff;
@@ -66,11 +77,6 @@
 
 
 <div id="bgArea"></div>
-<div id="importForm" class="popbox">
-	<textarea placeholder="ミッションデータをここに貼り付けて[OK]を押してください。"></textarea>
-	<input type="button" id="importOK" value="ＯＫ" />
-	<input type="button" id="importCancel" value="キャンセル" />
-</div>
 <div class="popbox">
 	<span class="box-title">収集アイテム</span>
 
@@ -146,6 +152,16 @@
 	<li><a href="https://zenith6.github.io/aigistools/">千年戦争アイギスツール</a>の◯◯タイマーのメメンテナンスが終わったら乗り換える。</li>
 </ol>
 </div>
+<div id="importForm" class="popbox">
+	<textarea placeholder="ミッションデータをここに貼り付けて[OK]を押してください。"></textarea>
+	<input type="button" id="importOK" value="ＯＫ" />
+	<input type="button" id="importCancel" value="キャンセル" />
+</div>
 
+<div id="caclInitArea" class="popbox">
+	<span class="box-title">はじめに</span>
+	何処かで公開されたミッションデータを持っている場合は、<input type="button" id="importBtnInit" value="インポート" />ボタンを押してインポートしてください。<br>
+	ミッションデータが無い場合は、まず<a href="aigisImput.html" class="square_btn inp">ミッションデータ入力</a>画面でミッションデータを作成してください。
+</div>
 </body>
 </html>

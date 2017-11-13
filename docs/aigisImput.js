@@ -48,15 +48,17 @@ function exportData()
 	showExportPopup();
 	
 }
+function closePopup()
+{
+	document.querySelector('#bgArea').style.display="none";
+	document.querySelector('#exportPopup').style.display="none";
+	document.querySelector('#inputInitArea').style.display="none";
+
+}
 function showExportPopup()
 {
 	document.querySelector('#exportPopup').style.display="block";
 	document.querySelector('#bgArea').style.display="block";
-}
-function closeExportPopup()
-{
-	document.querySelector('#exportPopup').style.display="none";
-	document.querySelector('#bgArea').style.display="none";
 }
 function clearData()
 {
@@ -112,6 +114,21 @@ function helpOpen()
 {
 	document.querySelector('#help').style.display = 'block';
 }
+function inputInitOpen()
+{
+	document.querySelector('#inputInitArea').style.display="block";
+	document.querySelector('#bgArea').style.display="block";
+}
+
+function loadInit()
+{
+	mapData = storage.getItem('mapData');
+	if(mapData == null || mapData.length == 0)
+	{
+		inputInitOpen();
+	}
+	init();
+}
 function init()
 {
 	setMissionList();
@@ -127,7 +144,7 @@ function init()
 	document.querySelector('#exportBtn').onclick = exportData;
 	document.querySelector('#clearData').onclick = clearData;
 	document.querySelector('#missionApply').onclick = applyMissionData;
-	document.querySelector('#bgArea').onclick = closeExportPopup;
+	document.querySelector('#bgArea').onclick = closePopup;
 	document.querySelector('#copyClipboad').onclick = copyClipboad;
 	document.querySelector('#helpClose').onclick = helpClose;
 	document.querySelector('#helpOpen').onclick = helpOpen;
@@ -139,6 +156,7 @@ function init()
 	mapData = storage.getItem('mapData');
 	if(mapData == null || mapData.length == 0)
 	{
+		inputInitOpen();
 		mapData = [
 			[,,,,,,,,,]
 		];
@@ -210,13 +228,13 @@ var tarHeaders = ['目標個数','説明'];
 
 if( window.addEventListener )
 {
-    window.addEventListener( 'load', init, false );
+    window.addEventListener( 'load', loadInit, false );
 }
 else if( window.attachEvent )
 {
-    window.attachEvent( 'onload', init );
+    window.attachEvent( 'onload', loadInit );
 }
 else
 {
-    window.onload = init;
+    window.onload = loadInit;
 }

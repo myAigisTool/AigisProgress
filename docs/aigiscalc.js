@@ -226,7 +226,9 @@ function dialogClose()
 	$('#bgArea').style.display = 'none';
 	$('#targetList').style.display = 'none';
 	$('#importForm').style.display = 'none';
+	$('#caclInitArea').style.display = 'none';	
 }
+
 function helpClose()
 {
 	var parent = this.parentNode;
@@ -235,6 +237,18 @@ function helpClose()
 function helpOpen()
 {
 	$('#help').style.display = 'block';
+}
+
+function calcInitOpen()
+{
+	$('#bgArea').style.display = 'block';
+	$('#caclInitArea').style.display = 'block';
+}
+
+function importBtnInit()
+{
+	$('#caclInitArea').style.display = 'none';	
+	$('#importForm').style.display = 'block';
 }
 
 function init()
@@ -252,6 +266,12 @@ function init()
 				mapData.pop();
 			}
 		}
+	}
+	
+	if(mapData == null || mapData.length == 0)
+	{
+		//初回アクセス時
+		calcInitOpen();
 	}
 	
 	targetList = storage.getItem('targetList');
@@ -297,6 +317,7 @@ function init()
 	$('#importCancel').onclick = dialogClose;
 	$('#helpClose').onclick = helpClose;
 	$('#helpOpen').onclick = helpOpen;
+	$('#importBtnInit').onclick=importBtnInit;
 
 	$('#nowVal').value = storage.getItem('nowVal');
 	$('#targetVal').value = storage.getItem('targetVal');
@@ -305,9 +326,9 @@ function init()
 	$('#isAutoRecovery').checked = storage.getItem('isAutoRecovery');
 
 	var sdate = storage.getItem('dateFrom');
-	$('#dateFrom').innerHTML = sdate.replace(/-/g,'/');
+	if(sdate != null) $('#dateFrom').innerHTML = sdate.replace(/-/g,'/');
 	sdate = storage.getItem('dateTo');
-	$('#dateTo').innerHTML = sdate.replace(/-/g,'/');
+	if(sdate != null) $('#dateTo').innerHTML = sdate.replace(/-/g,'/');
 
 	$('#grid');
 	new Handsontable(grid, {
