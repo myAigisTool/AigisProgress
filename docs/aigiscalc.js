@@ -117,11 +117,11 @@ function recalc()
 	}
 	
 	//残り周回に必要なスタミナを石換算
-	var consumStamina = Math.ceil(spra / princeSta);
+	var consumStamina = Math.floor(spra / princeSta);
 	$("#consumStamina").innerHTML = consumStamina;
 	
 	//残り周回に必要なカリスマを石換算
-	var consumCharisma = Math.ceil(cpra / princeChari);
+	var consumCharisma = Math.floor(cpra / princeChari);
 	$("#consumCharisma").innerHTML = consumCharisma;
 	
 	//必要な石
