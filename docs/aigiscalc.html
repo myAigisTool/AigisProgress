@@ -21,7 +21,16 @@
 	background-color:white;
 	display:none;
 }
-
+#grid th:nth-child(4), td:nth-child(4)
+{
+	border-right-color:#ffcc80;
+	border-right-width:2px;
+}
+#grid th:nth-child(5), td:nth-child(5)
+{
+	border-color:#ffcc80;
+	border-width:2px;
+}
 .contents
 {
 	border-color: #95ccff;
@@ -135,7 +144,7 @@
 <div class="popbox">
 	<span class="box-title">ミッション情報</span>
 	<div id="grid" class="calcGrid"></div>
-	期待値は変更可能
+	期待値は変更可能(セルを選択してダブルクリック or F2)
 </div>
 </form>
 <div class="helpBtn" id="helpOpen">Help</div>
@@ -150,6 +159,7 @@
 	「目標値」をダブルクリックで報酬一覧から選択できます。</li>
 	<li>任意のタイミングで「現在の個数」を入力して進捗を確認します。</li>
 	<li><a href="https://zenith6.github.io/aigistools/">千年戦争アイギスツール</a>の◯◯タイマーのメメンテナンスが終わったら乗り換える。</li>
+	動きがおかしくなったら、<a href="aigisImput.html">[ミッションデータ入力画面]</a>で[オールクリア]してください。
 </ol>
 </div>
 <div id="importForm" class="popbox">
@@ -161,7 +171,8 @@
 <div id="caclInitArea" class="popbox">
 	<span class="box-title">はじめに</span>
 	何処かで公開されたミッションデータを持っている場合は、<input type="button" id="importBtnInit" value="インポート" />ボタンを押してインポートしてください。<br>
-	ミッションデータが無い場合は、まず<a href="aigisImput.html" class="square_btn inp">ミッションデータ入力</a>画面でミッションデータを作成してください。
+	ミッションデータが無い場合は、まず<a href="aigisImput.html" class="square_btn inp">ミッションデータ入力</a>画面でミッションデータを作成してください。<br>
+	期待値は直接編集できます。
 </div>
 </body>
 </html>
