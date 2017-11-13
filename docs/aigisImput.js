@@ -12,12 +12,10 @@ var BAR_MAX_WIDTH = 1000;
 function itemChange1()
 {
 	storage.setItem(this.id, this.value);
-	recalc();
 }
 function itemChangeCheck()
 {
 	storage.setItem(this.id, this.checked);
-	recalc();
 }
 
 function exportData()
