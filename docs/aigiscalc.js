@@ -162,7 +162,7 @@ function recalc()
 	$("#AutoRecoveryCnt").innerHTML = (nowVal-0) + autoRecAroundCnt;
 	
 	//自然回復のみで到達する報酬
-	sReword = getReword(pace);
+	sReword = getReword((nowVal-0) + autoRecAroundCnt);
 	if(sReword == "")
 	{
 		sReword = "";
