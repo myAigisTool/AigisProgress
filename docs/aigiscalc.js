@@ -136,6 +136,43 @@ function recalc()
 	var normaAround = normaCount / exp;
 	$("#normaAround").innerHTML = Math.ceil(normaAround);
 
+	//確定報酬
+	var sReword = getReword(nowVal);
+	$("#nowReward").innerHTML = sReword;
+
+	//このペースだと
+	sReword = getReword(pace);
+	if(sReword == "")
+	{
+		sReword = "";
+	}
+	else
+	{
+		sReword = "("+sReword+")";
+	}
+	$("#paceReward").innerHTML = sReword;
+	
+	//自然回復のみで出来る周回数
+	var autoRecAroundCnt = Math.floor(autoRecSta / mapData[selectedAroundMapIndex][3]);
+	
+	//自然回復のみで取得できるアイテム個数
+	var autoRecAroundCnt = autoRecAroundCnt * exp;
+	
+	//自然回復のみで到達するアイテム個数
+	$("#AutoRecoveryCnt").innerHTML = (nowVal-0) + autoRecAroundCnt;
+	
+	//自然回復のみで到達する報酬
+	sReword = getReword(pace);
+	if(sReword == "")
+	{
+		sReword = "";
+	}
+	else
+	{
+		sReword = " ("+sReword+")";
+	}
+	$("#AutoRecoveryReword").innerHTML = sReword;
+	
 }
 
 
@@ -155,7 +192,20 @@ function makeTargetList()
 		}, false);
 		parentElm.appendChild(elm);
 	}
-	
+}
+
+function getReword(itemCnt)
+{
+	if(targetList == null) return "";
+	var i = 1;
+	for(i = 1; i < targetList.length; i++)
+	{
+		if(targetList[i-1][0] <= itemCnt && targetList[i][0] >= itemCnt)
+		{
+			return "["+targetList[i-1][1]+"]";
+		}
+	}
+	return "["+targetList[i][1]+"]";
 }
 
 

@@ -56,6 +56,7 @@
 {
 	display:inline-block;
 	width:300px;
+	vertical-align: top;
 }
 #targetValArea input
 {
@@ -91,7 +92,7 @@
 
 <dl id="nowValArea">
 	<dt>現在の個数</dt>
-	<dd><input type="number" name="nowVal" id="nowVal"></dd>
+	<dd><input type="number" name="nowVal" id="nowVal"><br><span id="nowReward"></span></dd>
 </dl>
 <dl id="targetValArea">
 	<dt>目標値</dt>
@@ -112,7 +113,7 @@
 		<div id="progressMax"><span></span></div>
 		<div id="progressNow"><span></span></div>
 	</div>
-	今のペースだと最終日までに<span id="pace"></span>個
+	今のペースだと最終日までに<span id="pace"></span>個<span id="paceReward"></span>
 </div>
 </div>
 
@@ -139,6 +140,7 @@
 		<tr><td>残り周回数</td><td><span id="estimateAround"></span>周</td></tr>
 		<tr><td>一日辺りのノルマ</td><td><span id="normaCount"></span>個 / <span id="normaAround"></span>周</td></tr>
 	</table>
+	<p>自然回復のみで<span id="AutoRecoveryCnt"></span>個到達<span id="AutoRecoveryReword"></span></p>
 </div>
 
 <div class="popbox">
