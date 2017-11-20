@@ -117,11 +117,13 @@ function recalc()
 	}
 	
 	//残り周回に必要なスタミナを石換算
-	var consumStamina = Math.floor(spra / princeSta);
+	var consumStamina = Math.ceil(spra / princeSta);
+	if(consumStamina < 0) consumStamina = 0;
 	$("#consumStamina").innerHTML = consumStamina;
 	
 	//残り周回に必要なカリスマを石換算
-	var consumCharisma = Math.floor(cpra / princeChari);
+	var consumCharisma = Math.ceil(cpra / princeChari);
+	if(consumCharisma < 0) consumCharisma=0;
 	$("#consumCharisma").innerHTML = consumCharisma;
 	
 	//必要な石
@@ -156,13 +158,13 @@ function recalc()
 	var autoRecAroundCnt = Math.floor(autoRecSta / mapData[selectedAroundMapIndex][3]);
 	
 	//自然回復のみで取得できるアイテム個数
-	var autoRecAroundCnt = autoRecAroundCnt * exp;
+	var autoRecAroundItemCnt = autoRecAroundCnt * exp;
 	
 	//自然回復のみで到達するアイテム個数
-	$("#AutoRecoveryCnt").innerHTML = (nowVal-0) + autoRecAroundCnt;
+	$("#AutoRecoveryCnt").innerHTML = (nowVal-0) + autoRecAroundItemCnt;
 	
 	//自然回復のみで到達する報酬
-	sReword = getReword((nowVal-0) + autoRecAroundCnt);
+	sReword = getReword((nowVal-0) + autoRecAroundItemCnt);
 	if(sReword == "")
 	{
 		sReword = "";
