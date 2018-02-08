@@ -118,10 +118,12 @@ function recalc()
 	
 	//残り周回に必要なスタミナを石換算
 	var consumStamina = Math.ceil(spra / princeSta);
+	if(consumStamina < 0) consumStamina = 0;
 	$("#consumStamina").innerHTML = consumStamina;
 	
 	//残り周回に必要なカリスマを石換算
 	var consumCharisma = Math.ceil(cpra / princeChari);
+	if(consumCharisma < 0) consumCharisma=0;
 	$("#consumCharisma").innerHTML = consumCharisma;
 	
 	//必要な石
@@ -136,6 +138,43 @@ function recalc()
 	var normaAround = normaCount / exp;
 	$("#normaAround").innerHTML = Math.ceil(normaAround);
 
+	//確定報酬
+	var sReword = getReword(nowVal);
+	$("#nowReward").innerHTML = sReword;
+
+	//このペースだと
+	sReword = getReword(pace);
+	if(sReword == "")
+	{
+		sReword = "";
+	}
+	else
+	{
+		sReword = "("+sReword+")";
+	}
+	$("#paceReward").innerHTML = sReword;
+	
+	//自然回復のみで出来る周回数
+	var autoRecAroundCnt = Math.floor(autoRecSta / mapData[selectedAroundMapIndex][3]);
+	
+	//自然回復のみで取得できるアイテム個数
+	var autoRecAroundItemCnt = autoRecAroundCnt * exp;
+	
+	//自然回復のみで到達するアイテム個数
+	$("#AutoRecoveryCnt").innerHTML = (nowVal-0) + autoRecAroundItemCnt;
+	
+	//自然回復のみで到達する報酬
+	sReword = getReword((nowVal-0) + autoRecAroundItemCnt);
+	if(sReword == "")
+	{
+		sReword = "";
+	}
+	else
+	{
+		sReword = " ("+sReword+")";
+	}
+	$("#AutoRecoveryReword").innerHTML = sReword;
+	
 }
 
 
@@ -155,7 +194,20 @@ function makeTargetList()
 		}, false);
 		parentElm.appendChild(elm);
 	}
-	
+}
+
+function getReword(itemCnt)
+{
+	if(targetList == null) return "";
+	var i = 1;
+	for(i = 1; i < targetList.length; i++)
+	{
+		if(targetList[i-1][0] <= itemCnt && targetList[i][0] >= itemCnt)
+		{
+			return "["+targetList[i-1][1]+"]";
+		}
+	}
+	return "["+targetList[i-1][1]+"]";
 }
 
 
@@ -226,7 +278,9 @@ function dialogClose()
 	$('#bgArea').style.display = 'none';
 	$('#targetList').style.display = 'none';
 	$('#importForm').style.display = 'none';
+	$('#caclInitArea').style.display = 'none';	
 }
+
 function helpClose()
 {
 	var parent = this.parentNode;
@@ -235,6 +289,18 @@ function helpClose()
 function helpOpen()
 {
 	$('#help').style.display = 'block';
+}
+
+function calcInitOpen()
+{
+	$('#bgArea').style.display = 'block';
+	$('#caclInitArea').style.display = 'block';
+}
+
+function importBtnInit()
+{
+	$('#caclInitArea').style.display = 'none';	
+	$('#importForm').style.display = 'block';
 }
 
 function init()
@@ -254,6 +320,17 @@ function init()
 		}
 	}
 	
+	if(mapData == null || mapData.length == 0)
+	{
+		//初回アクセス時
+		calcInitOpen();
+	}
+	
+	targetList = storage.getItem('targetList');
+	if(targetList == null)
+	{
+		targetList = storage.getItem('rewardGrid');
+	}
 	targetList = storage.getItem('targetList');
 	if(targetList != null)
 	{
@@ -292,6 +369,7 @@ function init()
 	$('#importCancel').onclick = dialogClose;
 	$('#helpClose').onclick = helpClose;
 	$('#helpOpen').onclick = helpOpen;
+	$('#importBtnInit').onclick=importBtnInit;
 
 	$('#nowVal').value = storage.getItem('nowVal');
 	$('#targetVal').value = storage.getItem('targetVal');
@@ -300,9 +378,9 @@ function init()
 	$('#isAutoRecovery').checked = storage.getItem('isAutoRecovery');
 
 	var sdate = storage.getItem('dateFrom');
-	$('#dateFrom').innerHTML = sdate.replace(/-/g,'/');
+	if(sdate != null) $('#dateFrom').innerHTML = sdate.replace(/-/g,'/');
 	sdate = storage.getItem('dateTo');
-	$('#dateTo').innerHTML = sdate.replace(/-/g,'/');
+	if(sdate != null) $('#dateTo').innerHTML = sdate.replace(/-/g,'/');
 
 	$('#grid');
 	new Handsontable(grid, {
