@@ -255,6 +255,8 @@ function importOK()
 	storage.setItem('mapData',  JSON.stringify(mapData));
 	storage.setItem('targetList',  JSON.stringify(targetList));
 	
+	expecteData = [];
+	storage.setItem('expecteData', JSON.stringify(expecteData));
 	$('#targetList').innerHTML = "";
 
 	init();
@@ -343,6 +345,18 @@ function init()
 			}
 		}
 	}
+	expecteData = storage.getItem('expecteData');
+	if(expecteData != null)
+	{
+		expecteData = JSON.parse(expecteData);
+		for(var i = 0; i < expecteData.length ; i++)
+		{
+			if(expecteData[i] != null)
+			{
+				mapData[i][4] = expecteData[i];
+			}
+		}
+	}
 	
 
 	makePrinceRankList();
@@ -393,6 +407,12 @@ function init()
 		        cellProperties.readOnly = false;
 		    }
 		    return cellProperties;
+		},
+		afterChange: function(change, source)
+		{
+			if(source != 'edit') return;
+			expecteData[change[0][0]] = change[0][3]-0;
+			storage.setItem('expecteData', JSON.stringify(expecteData));
 		}
 	});
 
@@ -402,6 +422,7 @@ function init()
 var mapHeaders = ['MAP','難易度','カリスマ','スタミナ','期待値','ドロップ１','ドロップ２','ドロップ３','ドロップ４'];
 
 var mapData = [];
+var expecteData = [];
 
 var targetList = [];
 

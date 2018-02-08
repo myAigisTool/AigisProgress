@@ -195,10 +195,14 @@ function init()
 		colHeaders: tarHeaders,
 		readOnly:false,
 		cells: function(row, col, prop) {
-			storage.setItem('rewardGrid', JSON.stringify(targetList));
 			
 		    var cellProperties = {};
 		    return cellProperties;
+		}
+		,afterChange: function(change, source)
+		{
+			if(source != 'edit') return;
+			storage.setItem('rewardGrid', JSON.stringify(targetList));
 		}
 	});
 }
