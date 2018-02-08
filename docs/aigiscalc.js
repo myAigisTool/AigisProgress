@@ -207,7 +207,7 @@ function getReword(itemCnt)
 			return "["+targetList[i-1][1]+"]";
 		}
 	}
-	return "["+targetList[i][1]+"]";
+	return "["+targetList[i-1][1]+"]";
 }
 
 
