@@ -411,6 +411,7 @@ function init()
 		afterChange: function(change, source)
 		{
 			if(source != 'edit') return;
+			if(expecteData == null) expecteData = [];
 			expecteData[change[0][0]] = change[0][3]-0;
 			storage.setItem('expecteData', JSON.stringify(expecteData));
 		}
