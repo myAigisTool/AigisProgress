@@ -414,6 +414,7 @@ function init()
 			if(expecteData == null) expecteData = [];
 			expecteData[change[0][0]] = change[0][3]-0;
 			storage.setItem('expecteData', JSON.stringify(expecteData));
+			recalc();
 		}
 	});
 
