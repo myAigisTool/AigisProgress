@@ -35,7 +35,7 @@ function recalc()
 	var startDate = new Date(dateFrom);
 	var endDate = new Date(dateTo);
 	startDate.setHours(15);
-	endDate.setHours(10);
+	endDate.setHours(11);
 	
 	var maxSec = (endDate.getTime() - startDate.getTime()) / 1000;
 	var tarSec = (nowDate.getTime() - startDate.getTime()) / 1000;
