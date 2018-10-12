@@ -217,7 +217,6 @@ function dialogClose()
 	$('#bgArea').style.display = 'none';
 	$('#targetList').style.display = 'none';
 	$('#importForm').style.display = 'none';
-	$('#caclInitArea').style.display = 'none';	
 }
 
 function helpClose()
@@ -230,22 +229,10 @@ function helpOpen()
 	$('#help').style.display = 'block';
 }
 
-function calcInitOpen()
-{
-	$('#bgArea').style.display = 'block';
-	$('#caclInitArea').style.display = 'block';
-}
 function init()
 {
 	$('#EstimateGrid').innerHTML = "";
 	$('#ExpectedGrid').innerHTML = "";
-	
-	
-	if(mapData == null || mapData.length == 0)
-	{
-		//初回アクセス時
-		calcInitOpen();
-	}
 	
 	targetList = storage.getItem('targetList');
 	if(targetList == null)
