@@ -4,12 +4,14 @@ body
 }
 form
 {
-	width:1050px;
+/*	width:1050px;*/
+}
+h1{
+	font-size:1.8em;
 }
 #progerssArea
 {
-	/*border:1px solid gray;*/
-	width:1000px;
+	width:100%;
 }
 #progressMax
 {
@@ -87,7 +89,7 @@ form
 	position:absolute;
 	top:0;
 	right:0;
-	width:30%;
+	width:50%;
 	background-color:white;
     border-left: solid 3px #95ccff;
     border-bottom: solid 3px #95ccff;
@@ -210,6 +212,14 @@ form
     background: #5cc2ff;
     color: #FFF;
 }
+.calc2 {
+    color: #444;
+    background: #dddddd;
+}
+.calc2:hover {
+    background: #888;
+    color: #FFF;
+}
 
 
 #caclInitArea
@@ -249,14 +259,14 @@ form
 }
 .contents
 {
-	border-color: #95ccff;
+	border-color: #cccccc;
 }
 .popbox {
-    border: solid 3px #95ccff;
+    border: solid 3px #cccccc;
 }
 .popbox .box-title {
     background: #FFF;
-    color: #95ccff;
+    color: #888;
 }
 
 #nowValArea
@@ -271,7 +281,7 @@ form
 #targetValArea
 {
 	display:inline-block;
-	width:300px;
+	width:250px;
 	vertical-align: top;
 }
 #targetValArea input
@@ -282,3 +292,5 @@ form
 #EstimateGrid table {
 	width:485px;
 }
+
+

@@ -210,4 +210,12 @@ form
     background: #5cc2ff;
     color: #FFF;
 }
+.calc2 {
+    color: #444;
+    background: #dddddd;
+}
+.calc2:hover {
+    background: #888;
+    color: #FFF;
+}
 

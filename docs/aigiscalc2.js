@@ -16,8 +16,6 @@ var expGridDataInit = [
 ];
 var storage = localStorage;
 
-var BAR_MAX_WIDTH = 1000;
-
 function $(id)
 {
 	return document.querySelector(id);
@@ -80,13 +78,16 @@ function recalc()
 	if(progMax > 1) progMax = 1;
 	if(progVal > 1) progVal = 1;
 	
+	var progressArea = $('#progerssArea');
+	var prWidth = $('#progerssArea').clientWidth - 0;
+	
 	var progressMax = $("#progressMax");
-	progressMax.style.width = (progMax * BAR_MAX_WIDTH) + "px";
+	progressMax.style.width = (progMax * 100) + "%";
 	var progMaxText = $("#progressMax span");
 	progMaxText.innerHTML = "" + Math.round(progMax * 100)  + "%経過";
 	
 	var progressNow = $("#progressNow");
-	progressNow.style.width = (progVal * BAR_MAX_WIDTH) + "px";
+	progressNow.style.width = (progVal * 100) + "%";
 	var progMaxText = $("#progressNow span");
 	progMaxText.innerHTML = ""+Math.round(progVal * 100) + "%達成";
 	
@@ -159,7 +160,7 @@ function setEstimateTable(aroundIndex, shortageVal, remainHour, princeSta, princ
 	var cpra = remainingAround * mapData[aroundIndex][2];
 	
 	//自然回復
-	var isAutoRecovery = true;//$("#isAutoRecovery").checked;
+	var isAutoRecovery = true;
 	//残り時間で回復するスタミナ
 	var autoRecSta = remainHour * 1;
 	//残り時間で回復するカリスマ
@@ -226,7 +227,6 @@ function helpClose()
 }
 function helpOpen()
 {
-	localStorage.clear();
 	$('#help').style.display = 'block';
 }
 
@@ -279,16 +279,15 @@ function init()
 	
 	$('#princeRank').onblur = itemChange1;
 	$('#princeRank').onchange = itemChange1;
-	$('#isAutoRecovery').onblur = itemChangeCheck;
-	$('#isAutoRecovery').onclick = itemChangeCheck;
 	$('#bgArea').onclick = dialogClose;
 	$('#helpClose').onclick = helpClose;
 	$('#helpOpen').onclick = helpOpen;
 
 	$('#nowVal').value = storage.getItem('nowVal');
 	$('#targetVal').value = storage.getItem('targetVal');
-	$('#princeRank').value = storage.getItem('princeRank');
-	$('#isAutoRecovery').checked = storage.getItem('isAutoRecovery');
+	var princeRank = storage.getItem('princeRank');
+	if(princeRank == null) princeRank = 200;
+	$('#princeRank').value = princeRank;
 	$('#nonThief').onchange = onChangeThief;
 	$('#useThief').onchange = onChangeThief;
 	$('#awakeThief').onchange = onChangeThief;
