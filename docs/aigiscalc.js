@@ -371,6 +371,8 @@ function init()
 	 
 	$('#dateFrom').onblur = itemChange1;
 	$('#dateFrom').onchange = itemChange1;
+	$('#dateTo').onblur = itemChange1;
+	$('#dateTo').onchange = itemChange1;
 	$('#princeRank').onblur = itemChange1;
 	$('#princeRank').onchange = itemChange1;
 	$('#aroundMap').onblur = itemChange1;

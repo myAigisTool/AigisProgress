@@ -4,9 +4,9 @@ var mapData = [
 [,"後半神",90,12],
 ];
 var estimateDataInit = [
-["前半極", , , ,],
-["前半神", , , ,],
-["後半神", , , ,],
+["前半極", , , , ,],
+["前半神", , , , ,],
+["後半神", , , , ,],
 ];
 
 var expGridDataInit = [
@@ -133,6 +133,7 @@ function recalc()
 		estimateGrid.loadData(estimateData);
 	}
 	
+	
 }
 
 function setEstimateTable(aroundIndex, shortageVal, remainHour, princeSta, princeChari, shortageSec)
@@ -195,9 +196,16 @@ function setEstimateTable(aroundIndex, shortageVal, remainHour, princeSta, princ
 	//周回数
 	var normaAround = normaCount / exp;
 	
-	estimateData[aroundIndex][1] = ''+ consumCount + '個(カリx' + consumCharisma + '/スタx' + consumStamina + ')';
+	//自動回復のみ
+	var autoAroundCnt = Math.ceil(autoRecSta / mapData[aroundIndex][3]);
+	var autoRecItem = exp * autoAroundCnt;
+	var nowVal = $("#nowVal").value;
+	autoRecItem += (nowVal - 0);
+	
+	estimateData[aroundIndex][1] = ''+ consumCount + '個(カリx' + consumCharisma + '：スタx' + consumStamina + ')';
 	estimateData[aroundIndex][2] = ''+ remainingAround + '周';
-	estimateData[aroundIndex][3] = ''+ Math.ceil(normaCount) + '個 / ' + Math.ceil(normaAround) + '周';
+	estimateData[aroundIndex][3] = ''+ Math.ceil(normaCount) + '個 ： ' + Math.ceil(normaAround) + '周';
+	estimateData[aroundIndex][4] = ''+ autoAroundCnt + '周で' + Math.ceil(autoRecItem) + '個到達';
 }
 
 function makePrinceRankList()
@@ -263,6 +271,9 @@ function init()
 	$('#dateFrom').onblur = itemChange1;
 	$('#dateFrom').onchange = itemChange1;
 	$('#dateFrom').onchange = onChangeDateFrom;
+
+	$('#dateTo').onblur = itemChange1;
+	$('#dateTo').onchange = itemChange1;
 	
 	$('#princeRank').onblur = itemChange1;
 	$('#princeRank').onchange = itemChange1;
@@ -320,8 +331,8 @@ function init()
 	var estimateTable = $('#EstimateGrid');
 	estimateGrid = new Handsontable(estimateTable, {
 		data: estimateData,
-		colHeaders: ['ステージ','消費結晶','残り周回数','一日のノルマ'],
-		colWidths: [75, 200, 100, 110],
+		colHeaders: ['ステージ','消費結晶','残り周回数','一日のノルマ','自動回復のみ'],
+		colWidths: [75, 200, 100, 110,150],
 		readOnly:true,
 	});
 	
