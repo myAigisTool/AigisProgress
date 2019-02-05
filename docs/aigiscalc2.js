@@ -10,9 +10,9 @@ var estimateDataInit = [
 ];
 
 var expGridDataInit = [
-["前半極",11.25,11.6,11.8,12.2],
+["前半極",9.1,9.5,9.75,10],
 ["前半神",15,15,15,15],
-["後半神",22.5,23.3,23.8,24.3],
+["後半神",21.3,22,22.5,23],
 ];
 var storage = localStorage;
 
@@ -163,9 +163,9 @@ function setEstimateTable(aroundIndex, shortageVal, remainHour, princeSta, princ
 	//自然回復
 	var isAutoRecovery = true;
 	//残り時間で回復するスタミナ
-	var autoRecSta = remainHour * 1;
+	var autoRecSta = Math.floor(remainHour * 1);
 	//残り時間で回復するカリスマ
-	var autoRecChari = remainHour * 20;
+	var autoRecChari = Math.floor(remainHour * 20);
 	//残り時間で回復するスタミナ石換算
 	var autoRecStaStone = autoRecSta / princeSta;
 	//残り時間で回復するカリスマ石換算
@@ -197,7 +197,7 @@ function setEstimateTable(aroundIndex, shortageVal, remainHour, princeSta, princ
 	var normaAround = normaCount / exp;
 	
 	//自動回復のみ
-	var autoAroundCnt = Math.ceil(autoRecSta / mapData[aroundIndex][3]);
+	var autoAroundCnt = Math.floor(autoRecSta / mapData[aroundIndex][3]);
 	var autoRecItem = exp * autoAroundCnt;
 	var nowVal = $("#nowVal").value;
 	autoRecItem += (nowVal - 0);

@@ -100,9 +100,9 @@ function recalc()
 	//自然回復
 	var isAutoRecovery = $("#isAutoRecovery").checked;
 	//残り時間で回復するスタミナ
-	var autoRecSta = remainHour * 1;
+	var autoRecSta = Math.floor(remainHour * 1);
 	//残り時間で回復するカリスマ
-	var autoRecChari = remainHour * 20;
+	var autoRecChari = Math.floor(remainHour * 20);
 	//残り時間で回復するスタミナ石換算
 	var autoRecStaStone = autoRecSta / princeSta;
 	//残り時間で回復するカリスマ石換算
