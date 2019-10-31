@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>英傑の塔スコア計算機</title>
+<link rel="stylesheet" href="calc.css" />
+<script src="TowerOfHeroCalc.js" async></script>
+<style>
+
+.contents
+{
+	border-color: #f1daff;
+}
+.popbox {
+    border: solid 3px #f1daff;
+}
+.popbox .box-title {
+    background: #FFF;
+    color: #A000FF;
+}
+</style>
+</head>
+<body>
+<h1>英傑の塔スコア計算機</h1>
+<form>
+<a href="aigiscalc2.html" class="square_btn calc2">進捗ライト版</a>
+<a href="aigiscalc.html" class="square_btn calc">進捗情報</a>
+<a href="aigisImput.html" class="square_btn inp">ミッションデータ入力画面</a>
+<div class="contents">
+<div class="popbox">
+<span class="box-title">これはなに？</span>
+<p>
+<a href="http://games.dmm.com/detail/aigisc/">千年戦争アイギス</a>の英傑の塔での階層スコア計算機です。<br>
+編成人数と使用コストを入力すると階層スコアを計算します。
+</p>
+</div>
+
+<div id="bgArea"></div>
+<div class="popbox">
+	<span class="box-title">編成 / コスト</span>
+	<table border=0>
+		<tr><th>獲得★数</th><td>3</td><td><span id="starPt"></span>pt</td></tr>
+		<tr><th>編成人数</th><td><input type="number" name="member" id="member"></td><td><span id="memRate"></span></td></tr>
+		<tr><th>使用コスト</th><td><input type="number" name="cost" id="cost"></td><td><span id="costRate"></span></td></tr>
+	</table>
+	<span class="box-title">スコア</span>
+	<dl>
+		<dt>階層スコア</dt>
+		<dd><span id="score"></span>pt</dd>
+	</dl>
+</div>
+<div class="popbox">
+	<span class="box-title">階層スコア90000ライン表</span>
+	<table id="line90000" border=1>
+</div>
+
+
+</body>
+</html>
