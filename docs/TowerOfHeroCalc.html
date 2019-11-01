@@ -21,7 +21,7 @@
     color: #A000FF;
 }
 
-#memTable input[type="number"] {
+input[type="number"] {
 	width:30px;
 }
 .totalScore dt{
@@ -40,13 +40,15 @@
 <span class="box-title">これはなに？</span>
 <p>
 <a href="http://games.dmm.com/detail/aigisc/">千年戦争アイギス</a>の英傑の塔での階層スコア計算機です。<br>
-編成コスト表にユニット毎のコストを入力すると階層スコアを計算します。
+編成コスト表にユニット毎のコストを入力すると階層スコアを計算します。<br>
+チェックボックスをOFFにすると編成人数に含まれずコストのみ加算されるので、トークン等に使用してください。
 </p>
 </div>
 
 <div id="bgArea"></div>
 <div class="popbox">
 	<span class="box-title">編成コスト</span>
+	王子コスト：<input type="number" id="member0" maxlength="2">
 	<table border=1 id="memTable">
 		<tr>
 			<td><input type="number" id="member1" maxlength="2"><input type="checkbox" id="check1"></td>
@@ -68,6 +70,13 @@
 			<td><input type="number" id="member13" maxlength="2"><input type="checkbox" id="check13"></td>
 			<td><input type="number" id="member14" maxlength="2"><input type="checkbox" id="check14"></td>
 			<td><input type="number" id="member15" maxlength="2"><input type="checkbox" id="check15"></td>
+		</tr>
+		<tr>
+			<td><input type="number" id="member16" maxlength="2"></td>
+			<td><input type="number" id="member17" maxlength="2"></td>
+			<td><input type="number" id="member18" maxlength="2"></td>
+			<td><input type="number" id="member19" maxlength="2"></td>
+			<td><input type="number" id="member20" maxlength="2"></td>
 		</tr>
 	</table>
 </div>

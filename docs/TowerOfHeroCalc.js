@@ -10,11 +10,15 @@ function recalc2()
 	var cost = 0;
 	var mem = 0;
 	var costbk = 0;
-	for(var i = 1; i < 16; i++)
+	cost += getCellValue(0);
+	for(var no = 1; no < 21; no++)
 	{
-		cost += getCellValue(i);
-		if(cost != costbk) mem++;
-		costbk=cost;
+		var cost2 = getCellValue(no);
+		if(cost2 > 0 && no < 16 && $('#check'+no).checked)
+		{
+			mem++;
+		}
+		cost += cost2;
 	}
 	
 	$('#memCnt').innerHTML = mem;
@@ -38,19 +42,23 @@ function recalc2()
 function getCellValue(no)
 {
 	var val = $('#member'+no).value;
-	if($('#check'+no).checked) return val - 0;
-	return 0;
+	return val-0;
 }
 
 function initCell()
 {
-	for(var no = 1; no < 16; no++)
+	$('#member0').onblur = recalc2;
+	$('#member0').onchange = recalc2;
+	for(var no = 1; no < 21; no++)
 	{
 		$('#member'+no).onblur = recalc2;
 		$('#member'+no).onchange = recalc2;
-		$('#check'+no).onblur = recalc2;
-		$('#check'+no).onchange = recalc2;
-		$('#check'+no).checked=true;
+		if(no < 16)
+		{
+			$('#check'+no).onblur = recalc2;
+			$('#check'+no).onchange = recalc2;
+			$('#check'+no).checked=true;
+		}
 	}
 }
 
@@ -58,7 +66,7 @@ function initCell()
 function line90000()
 {
 	var tbl = "<tr><th>編成人数</th><th>使用コスト</th><th>スコア</th><tr>";
-	for(var member = 1; member < 16; member++)
+	for(var member = 0; member < 16; member++)
 	{
 		var score = BASE_SCORE3;
 		var memRate = MEMBER_RATE_MAX - member * MEMBR_RATE;
