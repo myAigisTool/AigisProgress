@@ -5,23 +5,55 @@ var COST_RATE_MAX = 7.5;
 
 var BASE_SCORE3 = 10000;
 
-
-function recalc()
+function recalc2()
 {
+	var cost = 0;
+	var mem = 0;
+	var costbk = 0;
+	for(var i = 1; i < 16; i++)
+	{
+		cost += getCellValue(i);
+		if(cost != costbk) mem++;
+		costbk=cost;
+	}
+	
+	$('#memCnt').innerHTML = mem;
+	$('#costSum').innerHTML = cost;
+	
+	
 	//☆３時スコア
 	var score = BASE_SCORE3;
 	//編成人数倍率
-	var memRate = MEMBER_RATE_MAX - $("#member").value * MEMBR_RATE;
+	var memRate = MEMBER_RATE_MAX - mem * MEMBR_RATE;
 	if(memRate < 1) memRate=1;
-	$('#memRate').innerHTML = memRate;
+	$('#memRate2').innerHTML = memRate;
 	//使用コスト倍率
-	var costRate = COST_RATE_MAX - $("#cost").value * COST_RATE;
+	var costRate = COST_RATE_MAX - cost * COST_RATE;
 	if(costRate < 1) costRate=1;
-	$('#costRate').innerHTML = costRate;
+	$('#costRate2').innerHTML = costRate;
 	
-	$('#score').innerHTML = score * memRate * costRate;
-	
+	$('#score2').innerHTML = score * memRate * costRate;
 }
+
+function getCellValue(no)
+{
+	var val = $('#member'+no).value;
+	if($('#check'+no).checked) return val - 0;
+	return 0;
+}
+
+function initCell()
+{
+	for(var no = 1; no < 16; no++)
+	{
+		$('#member'+no).onblur = recalc2;
+		$('#member'+no).onchange = recalc2;
+		$('#check'+no).onblur = recalc2;
+		$('#check'+no).onchange = recalc2;
+		$('#check'+no).checked=true;
+	}
+}
+
 
 function line90000()
 {
@@ -49,14 +81,13 @@ function $(id)
 
 function init()
 {
-	$('#member').onblur = recalc;
-	$('#member').onchange = recalc;
-	$('#cost').onblur = recalc;
-	$('#cost').onchange = recalc;
+	initCell();
 
-	$('#starPt').innerHTML = BASE_SCORE3;
+	$('#starPt2').innerHTML = BASE_SCORE3;
 
 	line90000();
+	
+	recalc2();
 }
 
 if( window.addEventListener )

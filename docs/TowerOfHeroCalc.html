@@ -20,6 +20,13 @@
     background: #FFF;
     color: #A000FF;
 }
+
+#memTable input[type="number"] {
+	width:30px;
+}
+.totalScore dt{
+	font-weight:bold;
+}
 </style>
 </head>
 <body>
@@ -33,24 +40,51 @@
 <span class="box-title">これはなに？</span>
 <p>
 <a href="http://games.dmm.com/detail/aigisc/">千年戦争アイギス</a>の英傑の塔での階層スコア計算機です。<br>
-編成人数と使用コストを入力すると階層スコアを計算します。
+編成コスト表にユニット毎のコストを入力すると階層スコアを計算します。
 </p>
 </div>
 
 <div id="bgArea"></div>
 <div class="popbox">
-	<span class="box-title">編成 / コスト</span>
+	<span class="box-title">編成コスト</span>
+	<table border=1 id="memTable">
+		<tr>
+			<td><input type="number" id="member1" maxlength="2"><input type="checkbox" id="check1"></td>
+			<td><input type="number" id="member2" maxlength="2"><input type="checkbox" id="check2"></td>
+			<td><input type="number" id="member3" maxlength="2"><input type="checkbox" id="check3"></td>
+			<td><input type="number" id="member4" maxlength="2"><input type="checkbox" id="check4"></td>
+			<td><input type="number" id="member5" maxlength="2"><input type="checkbox" id="check5"></td>
+		</tr>
+		<tr>
+			<td><input type="number" id="member6" maxlength="2"><input type="checkbox" id="check6"></td>
+			<td><input type="number" id="member7" maxlength="2"><input type="checkbox" id="check7"></td>
+			<td><input type="number" id="member8" maxlength="2"><input type="checkbox" id="check8"></td>
+			<td><input type="number" id="member9" maxlength="2"><input type="checkbox" id="check9"></td>
+			<td><input type="number" id="member10" maxlength="2"><input type="checkbox" id="check10"></td>
+		</tr>
+		<tr>
+			<td><input type="number" id="member11" maxlength="2"><input type="checkbox" id="check11"></td>
+			<td><input type="number" id="member12" maxlength="2"><input type="checkbox" id="check12"></td>
+			<td><input type="number" id="member13" maxlength="2"><input type="checkbox" id="check13"></td>
+			<td><input type="number" id="member14" maxlength="2"><input type="checkbox" id="check14"></td>
+			<td><input type="number" id="member15" maxlength="2"><input type="checkbox" id="check15"></td>
+		</tr>
+	</table>
+</div>
+<div class="popbox">
 	<table border=0>
-		<tr><th>獲得★数</th><td>3</td><td><span id="starPt"></span>pt</td></tr>
-		<tr><th>編成人数</th><td><input type="number" name="member" id="member"></td><td><span id="memRate"></span></td></tr>
-		<tr><th>使用コスト</th><td><input type="number" name="cost" id="cost"></td><td><span id="costRate"></span></td></tr>
+		<tr><td width=100>獲得★数</td><td width=100>3</td><td><span id="starPt2"></span>pt</td></tr>
+		<tr><td>編成人数</td><td><span id="memCnt"></span></td><td><span id="memRate2"></span></td></tr>
+		<tr><td>使用コスト</td><td><span id="costSum"></span></td><td><span id="costRate2"></span></td></tr>
 	</table>
 	<span class="box-title">スコア</span>
-	<dl>
+	<dl class="totalScore">
 		<dt>階層スコア</dt>
-		<dd><span id="score"></span>pt</dd>
+		<dd><span id="score2"></span>pt</dd>
 	</dl>
 </div>
+
+
 <div class="popbox">
 	<span class="box-title">階層スコア90000ライン表</span>
 	<table id="line90000" border=1>
