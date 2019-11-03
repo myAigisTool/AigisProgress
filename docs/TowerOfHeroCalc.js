@@ -30,11 +30,11 @@ function recalc2()
 	//編成人数倍率
 	var memRate = MEMBER_RATE_MAX - mem * MEMBR_RATE;
 	if(memRate < 1) memRate=1;
-	$('#memRate2').innerHTML = Math.ceil(memRate);
+	$('#memRate2').innerHTML = Math.ceil(memRate*100)/100.0;
 	//使用コスト倍率
 	var costRate = COST_RATE_MAX - cost * COST_RATE;
 	if(costRate < 1) costRate=1;
-	$('#costRate2').innerHTML = Math.ceil(costRate);
+	$('#costRate2').innerHTML = Math.ceil(costRate*100)/100.0;
 	
 	$('#score2').innerHTML = score * memRate * costRate;
 }
