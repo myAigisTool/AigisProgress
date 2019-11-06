@@ -36,7 +36,7 @@ function recalc2()
 	if(costRate < 1) costRate=1;
 	$('#costRate2').innerHTML = Math.ceil(costRate*100)/100.0;
 	
-	$('#score2').innerHTML = score * memRate * costRate;
+	$('#score2').innerHTML = Math.ceil(score * memRate * costRate);
 }
 
 function getCellValue(no)
