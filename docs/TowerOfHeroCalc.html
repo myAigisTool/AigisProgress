@@ -84,7 +84,12 @@ input[type="number"] {
 </div>
 <div class="popbox">
 	<table border=0>
-		<tr><td width=100>獲得★数</td><td width=100>3</td><td><span id="starPt2"></span>pt</td></tr>
+		<tr><td width=100>獲得★数</td><td width=100>
+			<select id="selectBaseScore">
+				<option value="10000">★★★</option>
+				<option value="5000">★★</option>
+				<option value="2500">★</option>
+			</select></td><td><span id="starPt2"></span>pt</td></tr>
 		<tr><td>編成人数</td><td><span id="memCnt"></span></td><td><span id="memRate2"></span></td></tr>
 		<tr><td>使用コスト</td><td><span id="costSum"></span></td><td><span id="costRate2"></span></td></tr>
 	</table>

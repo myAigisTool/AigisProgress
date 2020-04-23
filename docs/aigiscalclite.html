@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>アイギス収集進捗どうですか？</title>
-<link rel="stylesheet" href="lib/handsontable.full.min.css" />
 <link rel="stylesheet" href="calc.css" />
-<script src="lib/handsontable.full.min.js" async></script>
 <script src="aigiscalc.js" async></script>
 <style>
 
@@ -89,35 +87,30 @@
 <body>
 <h1>アイギス収集進捗どうですか？</h1>
 <form>
-<a href="aigiscalc2.html" class="square_btn calc2">進捗ライト版</a>
+<span class="square_btn calc">進捗ライト版</span>
 <span class="square_btn calc">進捗情報</span>
 <a href="aigisImput.html" class="square_btn inp">ミッションデータ入力</a>
 <div class="contents">
-<input type="button" id="importBtn" value="インポート" />
-
 
 <div id="bgArea"></div>
 <div class="popbox">
 	<span class="box-title">収集アイテム</span>
 
-<dl id="nowValArea">
-	<dt>現在の個数</dt>
-	<dd><input type="number" name="nowVal" id="nowVal"><br><span id="nowReward"></span></dd>
-</dl>
-<dl id="targetValArea">
-	<dt>目標値</dt>
-	<dd>
-		<input type="number" list="targetList" autocomplete="on" name="targetVal" id="targetVal">
-		<ul id="targetList" />
-	</dd>
-</dl>
+	<dl id="nowValArea">
+		<dt>現在の個数</dt>
+		<dd><input type="number" name="nowVal" id="nowVal"></dd>
+	</dl>
+	<dl id="targetValArea">
+		<dt>目標値</dt>
+		<dd>
+			<input type="number" list="targetList" autocomplete="on" name="targetVal" id="targetVal">
+			<ul id="targetList" />
+		</dd>
+	</dl>
 </div>
 <div class="popbox">
 	<span class="box-title">進捗</span>
-<dl>
-	<dt>イベント期間</dt>
-	<dd><span id="dateFrom"></span>～<span id="dateTo"></span></dd>
-</dl>
+	<p><input type="date" name="dateFrom" id="dateFrom">～<input type="date" name="dateTo" id="dateTo"></p>
 <div id="progerssArea">
 	<div id="progressBG">
 		<div id="progressMax"><span></span></div>
@@ -129,7 +122,7 @@
 
 <div id="EstimateArea" class="popbox">
 	<span class="box-title">見積もり</span>
-	<div>
+	<div id="inputParamArea">
 		<dl id="maxCharismaArea">
 			<dt>最大カリスマ</dt>
 			<dd>
@@ -142,13 +135,6 @@
 			<input type="number" name="maxStamina" id="maxStamina" maxlength=2>
 			</dd>
 		</dl>
-		<dl id="aroundMapArea">
-			<dt>周回マップ</dt>
-			<dd>
-				<select name="aroundMap" id="aroundMap">
-				</select>
-			</dd>
-		</dl>
 		<div><input type="checkbox" name="isAutoRecovery" id="isAutoRecovery">自然回復を含める</div>
 	</div>
 	<table id="EstimateTable">
@@ -159,12 +145,6 @@
 	<p>自然回復のみで<span id="AutoRecoveryCnt"></span>個到達<span id="AutoRecoveryReword"></span></p>
 </div>
 
-<div class="popbox">
-	<span class="box-title">ミッション情報</span>
-	<div id="grid" class="calcGrid"></div>
-	<br>
-	<p>期待値は変更可能(セルを選択してダブルクリック or F2)</p>
-</div>
 </form>
 <div class="helpBtn" id="helpOpen">Help</div>
 <div id="help">

@@ -3,10 +3,14 @@ var COST_RATE = 0.02;
 var MEMBER_RATE_MAX = 2.5;
 var COST_RATE_MAX = 7.5;
 
+var BASE_SCORE1 = 2500;
+var BASE_SCORE2 = 5000;
 var BASE_SCORE3 = 10000;
+var BASE_SCORE = [10000,5000,2500];
 
 function recalc2()
 {
+	var baseScore = BASE_SCORE[$('#selectBaseScore').selectedIndex];
 	var cost = 0;
 	var mem = 0;
 	var costbk = 0;
@@ -21,12 +25,13 @@ function recalc2()
 		cost += cost2;
 	}
 	
+	$('#starPt2').innerHTML = baseScore;
 	$('#memCnt').innerHTML = mem;
 	$('#costSum').innerHTML = cost;
 	
 	
 	//☆３時スコア
-	var score = BASE_SCORE3;
+	var score = baseScore;
 	//編成人数倍率
 	var memRate = MEMBER_RATE_MAX - mem * MEMBR_RATE;
 	if(memRate < 1) memRate=1;
@@ -47,6 +52,8 @@ function getCellValue(no)
 
 function initCell()
 {
+	$('#selectBaseScore').onblur = recalc2;
+	$('#selectBaseScore').onchange = recalc2;
 	$('#member0').onblur = recalc2;
 	$('#member0').onchange = recalc2;
 	for(var no = 1; no < 21; no++)

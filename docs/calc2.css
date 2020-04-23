@@ -292,5 +292,20 @@ h1{
 #EstimateGrid table {
 	width:485px;
 }
-
+#maxCharismaArea
+{
+	display:inline-block;
+}
+#maxStaminaArea
+{
+	display:inline-block;
+}
+#maxCharisma
+{
+	width:50px;
+}
+#maxStamina
+{
+	width:50px;
+}
 

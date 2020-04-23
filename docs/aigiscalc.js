@@ -64,8 +64,6 @@ function recalc()
 	$("#pace").innerHTML = pace;
 	
 	
-	//王子ランク(index)
-	var selectedPrinceRankIndex = $("#princeRank").value - 0;
 	//選択周回マップ（index)
 	var selectedAroundMapIndex = $("#aroundMap").value - 0;
 	
@@ -77,9 +75,9 @@ function recalc()
 	//期待値
 	var exp = mapData[selectedAroundMapIndex][4];
 	//王子ランクカリスマ
-	var princeChari = princeRankList[selectedPrinceRankIndex][1];
+	var princeChari = $("#maxCharisma").value - 0;
 	//王子ランクスタミナ
-	var princeSta = princeRankList[selectedPrinceRankIndex][2];
+	var princeSta = $("#maxStamina").value - 0;
 	
 	//残個数
 	var shortageVal = targetVal - nowVal;
@@ -223,17 +221,6 @@ function makeAroundMapList()
 	$('#aroundMap').innerHTML = options;
 }
 
-function makePrinceRankList()
-{
-	var options = "";
-	for(let i = 0; i < princeRankList.length; i++)
-	{
-		options += "<option value='"+ i + "'>" +princeRankList[i][0] +"("+ princeRankList[i][1]+"/"+princeRankList[i][2]+")</option>";
-	}
-	
-	$('#princeRank').innerHTML = options;
-}
-
 function importOK()
 {
 	var jsn = $('#importForm textarea').value;
@@ -359,7 +346,6 @@ function init()
 	}
 	
 
-	makePrinceRankList();
 	makeTargetList();
 	makeAroundMapList();
 
@@ -373,10 +359,12 @@ function init()
 	$('#dateFrom').onchange = itemChange1;
 	$('#dateTo').onblur = itemChange1;
 	$('#dateTo').onchange = itemChange1;
-	$('#princeRank').onblur = itemChange1;
-	$('#princeRank').onchange = itemChange1;
 	$('#aroundMap').onblur = itemChange1;
 	$('#aroundMap').onchange = itemChange1;
+	$('#maxCharisma').onblur = itemChange1;
+	$('#maxCharisma').onchange = itemChange1;
+	$('#maxStamina').onblur = itemChange1;
+	$('#maxStamina').onchange = itemChange1;
 	$('#isAutoRecovery').onblur = itemChangeCheck;
 	$('#isAutoRecovery').onclick = itemChangeCheck;
 	$('#importBtn').onclick = importClick;
@@ -389,9 +377,11 @@ function init()
 
 	$('#nowVal').value = storage.getItem('nowVal');
 	$('#targetVal').value = storage.getItem('targetVal');
-	$('#princeRank').value = storage.getItem('princeRank');
+	$('#maxCharisma').value = storage.getItem('maxCharisma');
+	$('#maxStamina').value = storage.getItem('maxStamina');
 	$('#aroundMap').value = storage.getItem('aroundMap');
 	$('#isAutoRecovery').checked = storage.getItem('isAutoRecovery');
+	
 
 	var sdate = storage.getItem('dateFrom');
 	if(sdate != null) $('#dateFrom').innerHTML = sdate.replace(/-/g,'/');

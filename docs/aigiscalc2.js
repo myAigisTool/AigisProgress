@@ -12,7 +12,7 @@ var estimateDataInit = [
 var expGridDataInit = [
 ["前半極",11.1,11.4,11.65,11.9],
 ["前半神",15,15,15,15],
-["後半神",21.3,22,22.5,23],
+["後半神",22,22.8,23.3,23.8],
 ];
 var storage = localStorage;
 
@@ -100,8 +100,6 @@ function recalc()
 	$("#pace").innerHTML = pace;
 	
 	
-	//王子ランク(index)
-	var selectedPrinceRankIndex = $("#princeRank").value - 0;
 	//選択周回マップ（index)
 	var selectedAroundMapIndex = 0
 	
@@ -111,9 +109,9 @@ function recalc()
 	//1カリスマ辺りのスタミナ
 	var spc = mapData[selectedAroundMapIndex][3] / mapData[selectedAroundMapIndex][2];
 	//王子ランクカリスマ
-	var princeChari = princeRankList[selectedPrinceRankIndex][1];
+	var princeChari = $("#maxCharisma").value - 0;
 	//王子ランクスタミナ
-	var princeSta = princeRankList[selectedPrinceRankIndex][2];
+	var princeSta = $("#maxStamina").value - 0;
 	
 	//残個数
 	var shortageVal = targetVal - nowVal;
@@ -208,17 +206,6 @@ function setEstimateTable(aroundIndex, shortageVal, remainHour, princeSta, princ
 	estimateData[aroundIndex][4] = ''+ autoAroundCnt + '周で' + Math.ceil(autoRecItem) + '個到達';
 }
 
-function makePrinceRankList()
-{
-	var options = "";
-	for(let i = 0; i < princeRankList.length; i++)
-	{
-		options += "<option value='"+ i + "'>" +princeRankList[i][0] +"("+ princeRankList[i][1]+"/"+princeRankList[i][2]+")</option>";
-	}
-	
-	$('#princeRank').innerHTML = options;
-}
-
 
 function dialogClose()
 {
@@ -261,8 +248,6 @@ function init()
 	}
 	
 
-	makePrinceRankList();
-
 	$('#nowVal').onblur = itemChange1;
 	$('#nowVal').onchange = itemChange1;
 	$('#targetVal').onblur = itemChange1;
@@ -275,17 +260,24 @@ function init()
 	$('#dateTo').onblur = itemChange1;
 	$('#dateTo').onchange = itemChange1;
 	
-	$('#princeRank').onblur = itemChange1;
-	$('#princeRank').onchange = itemChange1;
+	$('#maxCharisma').onblur = itemChange1;
+	$('#maxCharisma').onchange = itemChange1;
+	$('#maxStamina').onblur = itemChange1;
+	$('#maxStamina').onchange = itemChange1;
 	$('#bgArea').onclick = dialogClose;
 	$('#helpClose').onclick = helpClose;
 	$('#helpOpen').onclick = helpOpen;
 
 	$('#nowVal').value = storage.getItem('nowVal');
 	$('#targetVal').value = storage.getItem('targetVal');
-	var princeRank = storage.getItem('princeRank');
-	if(princeRank == null) princeRank = 200;
-	$('#princeRank').value = princeRank;
+	
+	var maxCharisma = storage.getItem('maxCharisma');
+	if(maxCharisma == null) maxCharisma = 200;
+	$('#maxCharisma').value = maxCharisma;
+	var maxStamina = storage.getItem('maxStamina');
+	if(maxStamina == null) maxStamina = 18;
+	$('#maxStamina').value = maxStamina;
+	
 	$('#nonThief').onchange = onChangeThief;
 	$('#useThief').onchange = onChangeThief;
 	$('#awakeThief').onchange = onChangeThief;
