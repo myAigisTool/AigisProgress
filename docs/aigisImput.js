@@ -209,7 +209,7 @@ function init()
 
 var mapColumns = [
 	{type:'text'},
-	{type:'autocomplete', source:['初級','中級','上級','極級','神級']},
+	{type:'autocomplete', source:['初級','中級','上級','極級','神級','神Ex']},
 	{type:'numeric'},
 	{type:'numeric'},
 	{type:'numeric'},
