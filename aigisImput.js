@@ -12,12 +12,10 @@ var BAR_MAX_WIDTH = 1000;
 function itemChange1()
 {
 	storage.setItem(this.id, this.value);
-	recalc();
 }
 function itemChangeCheck()
 {
 	storage.setItem(this.id, this.checked);
-	recalc();
 }
 
 function exportData()
@@ -48,15 +46,17 @@ function exportData()
 	showExportPopup();
 	
 }
+function closePopup()
+{
+	document.querySelector('#bgArea').style.display="none";
+	document.querySelector('#exportPopup').style.display="none";
+	document.querySelector('#inputInitArea').style.display="none";
+
+}
 function showExportPopup()
 {
 	document.querySelector('#exportPopup').style.display="block";
 	document.querySelector('#bgArea').style.display="block";
-}
-function closeExportPopup()
-{
-	document.querySelector('#exportPopup').style.display="none";
-	document.querySelector('#bgArea').style.display="none";
 }
 function clearData()
 {
@@ -88,8 +88,21 @@ function applyMissionData()
 	var val = document.querySelector('#missionList').value;
 	var data = JSON.parse(preData[val].data);
 	
-	storage.setItem('dateFrom', data.dateFrom);
-	storage.setItem('dateTo', data.dateTo);
+	var now = moment();
+	var dateFrom = data.dateFrom;
+	if(dateFrom == 'now')
+	{
+	
+		dateFrom = now.format("YYYY-MM-DD");
+	}
+	var dateTo = data.dateTo;
+	if(dateTo == 'now')
+	{
+		dateTo = now.add(14,"days").format("YYYY-MM-DD");
+	}
+	
+	storage.setItem('dateFrom', dateFrom);
+	storage.setItem('dateTo', dateTo);
 	storage.setItem('mapData', JSON.stringify(data.mapData));
 	storage.setItem('rewardGrid', JSON.stringify(data.targetList));
 	
@@ -112,6 +125,21 @@ function helpOpen()
 {
 	document.querySelector('#help').style.display = 'block';
 }
+function inputInitOpen()
+{
+	document.querySelector('#inputInitArea').style.display="block";
+	document.querySelector('#bgArea').style.display="block";
+}
+
+function loadInit()
+{
+	mapData = storage.getItem('mapData');
+	if(mapData == null || mapData.length == 0)
+	{
+		inputInitOpen();
+	}
+	init();
+}
 function init()
 {
 	setMissionList();
@@ -127,7 +155,7 @@ function init()
 	document.querySelector('#exportBtn').onclick = exportData;
 	document.querySelector('#clearData').onclick = clearData;
 	document.querySelector('#missionApply').onclick = applyMissionData;
-	document.querySelector('#bgArea').onclick = closeExportPopup;
+	document.querySelector('#bgArea').onclick = closePopup;
 	document.querySelector('#copyClipboad').onclick = copyClipboad;
 	document.querySelector('#helpClose').onclick = helpClose;
 	document.querySelector('#helpOpen').onclick = helpOpen;
@@ -139,6 +167,7 @@ function init()
 	mapData = storage.getItem('mapData');
 	if(mapData == null || mapData.length == 0)
 	{
+		inputInitOpen();
 		mapData = [
 			[,,,,,,,,,]
 		];
@@ -179,20 +208,24 @@ function init()
 		colHeaders: tarHeaders,
 		readOnly:false,
 		cells: function(row, col, prop) {
-			storage.setItem('rewardGrid', JSON.stringify(targetList));
 			
 		    var cellProperties = {};
 		    return cellProperties;
+		}
+		,afterChange: function(change, source)
+		{
+			if(source != 'edit') return;
+			storage.setItem('rewardGrid', JSON.stringify(targetList));
 		}
 	});
 }
 
 var mapColumns = [
 	{type:'text'},
-	{type:'autocomplete', source:['初級','中級','上級','極級','神級']},
+	{type:'autocomplete', source:['初級','中級','上級','極級','神級','神Ex']},
 	{type:'numeric'},
 	{type:'numeric'},
-	{type:'numeric'},
+	{type:'numeric',format:'00.99'},
 	{type:'text'},
 	{type:'text'},
 	{type:'text'},
@@ -204,19 +237,19 @@ var tarColumns = [
 	{type:'text'},
 ];
 
-var mapHeaders = ['MAP','難易度','カリスマ','スタミナ','期待値','ドロップ１','ドロップ２','ドロップ３','ドロップ４'];
+var mapHeaders = ['MAP','難易度','カリスマ','スタミナ','最大値','ドロップ１','ドロップ２','ドロップ３','ドロップ４'];
 var tarHeaders = ['目標個数','説明'];
 
 
 if( window.addEventListener )
 {
-    window.addEventListener( 'load', init, false );
+    window.addEventListener( 'load', loadInit, false );
 }
 else if( window.attachEvent )
 {
-    window.attachEvent( 'onload', init );
+    window.attachEvent( 'onload', loadInit );
 }
 else
 {
-    window.onload = init;
+    window.onload = loadInit;
 }
