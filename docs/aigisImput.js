@@ -75,6 +75,10 @@ function setMissionList()
 {
 	
 	var parentElm = document.querySelector('#missionList');
+	while(parentElm.lastChild)
+	{
+		parentElm,removeChild(parentElm.lastChild);
+	}
 	for(let i = 0; i < preData.length; i++)
 	{
 		var elm = document.createElement("option");
