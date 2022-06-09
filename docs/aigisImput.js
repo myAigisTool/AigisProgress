@@ -77,7 +77,7 @@ function setMissionList()
 	var parentElm = document.querySelector('#missionList');
 	while(parentElm.lastChild)
 	{
-		parentElm,removeChild(parentElm.lastChild);
+		parentElm.removeChild(parentElm.lastChild);
 	}
 	for(let i = 0; i < preData.length; i++)
 	{
@@ -109,6 +109,7 @@ function applyMissionData()
 	storage.setItem('dateTo', dateTo);
 	storage.setItem('mapData', JSON.stringify(data.mapData));
 	storage.setItem('rewardGrid', JSON.stringify(data.targetList));
+	storage.setItem('selectMission', val);
 	
 	init();
 }
@@ -164,7 +165,9 @@ function init()
 	document.querySelector('#helpClose').onclick = helpClose;
 	document.querySelector('#helpOpen').onclick = helpOpen;
 	
+	
 
+	document.querySelector('#missionList').value = storage.getItem('selectMission');
 	document.querySelector('#dateFrom').value = storage.getItem('dateFrom');
 	document.querySelector('#dateTo').value = storage.getItem('dateTo');
 
