@@ -88,8 +88,21 @@ function applyMissionData()
 	var val = document.querySelector('#missionList').value;
 	var data = JSON.parse(preData[val].data);
 	
-	storage.setItem('dateFrom', data.dateFrom);
-	storage.setItem('dateTo', data.dateTo);
+	var now = moment();
+	var dateFrom = data.dateFrom;
+	if(dateFrom == 'now')
+	{
+	
+		dateFrom = now.format("YYYY-MM-DD");
+	}
+	var dateTo = data.dateTo;
+	if(dateTo == 'now')
+	{
+		dateTo = now.add(14,"days").format("YYYY-MM-DD");
+	}
+	
+	storage.setItem('dateFrom', dateFrom);
+	storage.setItem('dateTo', dateTo);
 	storage.setItem('mapData', JSON.stringify(data.mapData));
 	storage.setItem('rewardGrid', JSON.stringify(data.targetList));
 	
@@ -212,7 +225,7 @@ var mapColumns = [
 	{type:'autocomplete', source:['初級','中級','上級','極級','神級','神Ex']},
 	{type:'numeric'},
 	{type:'numeric'},
-	{type:'numeric'},
+	{type:'numeric',format:'00.99'},
 	{type:'text'},
 	{type:'text'},
 	{type:'text'},
@@ -224,7 +237,7 @@ var tarColumns = [
 	{type:'text'},
 ];
 
-var mapHeaders = ['MAP','難易度','カリスマ','スタミナ','期待値','ドロップ１','ドロップ２','ドロップ３','ドロップ４'];
+var mapHeaders = ['MAP','難易度','カリスマ','スタミナ','最大値','ドロップ１','ドロップ２','ドロップ３','ドロップ４'];
 var tarHeaders = ['目標個数','説明'];
 
 
